@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Đệ Dừa</title>
+
+    <link rel="icon" type="image/png" href="logo/logo.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #4A7C59;
+            --light-green: #7CB342;
+            --cream: #FDF6E3;
+            --sand: #F5E6D3;
+            --dark-brown: #3E2723;
+            --gold: #D4AF37;
+            --white: #FFFFFF;
+            --red: #E53935;
+            --blue: #1976D2;
+            --shadow: rgba(74, 124, 89, 0.15);
+            --gray: #9E9E9E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--cream);
+            color: var(--dark-brown);
+            min-height: 100vh;
+        }
+
+        /* =============== LOGIN =============== */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-box h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .login-box>p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--dark-brown);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--sand);
+            border-radius: 10px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--light-green);
+        }
+
+        .btn {
+            padding: 0.9rem 1.5rem;
+            border-radius: 10px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--sand);
+            color: var(--dark-brown);
+        }
+
+        .btn-danger {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .error-message {
+            color: var(--red);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* =============== ADMIN LAYOUT =============== */
+        .admin-container {
+            display: none;
+        }
+
+        .admin-header {
+            background: var(--white);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.3rem;
+        }
+
+        .admin-header h1 img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 8px;
+        }
+
+        /* =============== TABS =============== */
+        .admin-content {
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.7rem 1.2rem;
+            border: none;
+            background: var(--white);
+            color: var(--dark-brown);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab-btn:hover {
+            background: var(--sand);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .tab-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* =============== CARDS =============== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--white);
+        }
+
+        .stat-info h3 {
+            font-size: 1.6rem;
+            color: var(--primary-green);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-info p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* =============== DATA SECTION =============== */
+        .data-section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+
+        /* =============== GRID ITEMS =============== */
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .item-card {
+            background: var(--cream);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .item-image {
+            height: 140px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-actions {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .item-card:hover .item-actions {
+            opacity: 1;
+        }
+
+        .item-info {
+            padding: 0.8rem;
+        }
+
+        .item-info h4 {
+            font-size: 0.95rem;
+            color: var(--dark-brown);
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .item-info p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-edit {
+            background: var(--white);
+            color: var(--primary-green);
+        }
+
+        .btn-delete {
+            background: var(--white);
+            color: var(--red);
+        }
+
+        .btn-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* =============== TABLE =============== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .data-table th {
+            background: var(--cream);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .data-table tr:hover {
+            background: rgba(253, 246, 227, 0.5);
+        }
+
+        .table-img {
+            width: 60px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .status-published {
+            background: rgba(124, 179, 66, 0.15);
+            color: var(--primary-green);
+        }
+
+        .status-draft {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray);
+        }
+
+        .no-data svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--sand);
+            margin-bottom: 1rem;
+        }
+
+        /* =============== MODAL =============== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--sand);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+
+        .modal-close {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: var(--cream);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .modal-body {
+            padding: 1.2rem;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .image-upload {
+            border: 2px dashed var(--sand);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-upload:hover {
+            border-color: var(--light-green);
+            background: rgba(124, 179, 66, 0.05);
+        }
+
+        .image-upload input {
+            display: none;
+        }
+
+        .image-upload svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .image-upload p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .image-preview {
+            margin-top: 1rem;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 10px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .modal-footer {
+            padding: 1.2rem;
+            border-top: 1px solid var(--sand);
+            display: flex;
+            gap: 0.8rem;
+            justify-content: flex-end;
+        }
+
+        /* =============== RESPONSIVE =============== */
+        @media (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .tabs {
+                overflow-x: auto;
+            }
+
+            .data-table th:nth-child(3),
+            .data-table td:nth-child(3) {
+                display: none;
+            }
+        }
+
+        /* =============== SVG ICONS =============== */
+        .icon {
+            display: inline-flex;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- SVG Icons -->
+    <svg style="display: none;">
+        <symbol id="icon-posts" viewBox="0 0 24 24">
+            <path
+                d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM5 5h14v4H5V5zm0 6h6v8H5v-8zm8 8v-8h6v8h-6z" />
+        </symbol>
+        <symbol id="icon-images" viewBox="0 0 24 24">
+            <path
+                d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+        </symbol>
+        <symbol id="icon-products" viewBox="0 0 24 24">
+            <path
+                d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.17 14.75l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4l-3.86 7H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.97 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+        </symbol>
+        <symbol id="icon-draft" viewBox="0 0 24 24">
+            <path
+                d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6V6z" />
+        </symbol>
+        <symbol id="icon-add" viewBox="0 0 24 24">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </symbol>
+        <symbol id="icon-edit" viewBox="0 0 24 24">
+            <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+        </symbol>
+        <symbol id="icon-delete" viewBox="0 0 24 24">
+            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+        </symbol>
+        <symbol id="icon-upload" viewBox="0 0 24 24">
+            <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z" />
+        </symbol>
+        <symbol id="icon-view" viewBox="0 0 24 24">
+            <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+        </symbol>
+        <symbol id="icon-logout" viewBox="0 0 24 24">
+            <path
+                d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
+        </symbol>
+        <symbol id="icon-empty" viewBox="0 0 24 24">
+            <path
+                d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V6h5.17l2 2H20v10z" />
+        </symbol>
+    </svg>
+
+    <!-- Login Page -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <img src="logo/logo.jpg" alt="Đệ Dừa" class="login-logo">
+            <h1>Đăng Nhập Admin</h1>
+            <p>Vui lòng đăng nhập để quản lý nội dung</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập</label>
+                    <input type="text" id="username" placeholder="admin" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" placeholder="••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Đăng Nhập</button>
+                <p class="error-message" id="errorMessage">Tên đăng nhập hoặc mật khẩu không đúng!</p>
+            </form>
+
+            <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--gray);">
+                Tài khoản: admin / admin123
+            </p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-container" id="adminContainer">
+        <header class="admin-header">
+            <h1>
+                <img src="logo/logo.jpg" alt="Đệ Dừa">
+                Quản Lý Đệ Dừa
+            </h1>
+            <div class="header-actions">
+                <a href="index.html" target="_blank" class="btn btn-secondary btn-sm">
+                    <svg style="width:16px;height:16px">
+                        <use href="#icon-view" />
+                    </svg>
+                    Xem Web
+                </a>
+                <button class="btn btn-danger btn-sm" onclick="logout()">
+                    <svg style="width:16px;height:16px">
+                        <use href="#icon-logout" />
+                    </svg>
+                    Thoát
+                </button>
+            </div>
+        </header>
+
+        <main class="admin-content">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg>
+                            <use href="#icon-posts" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalPosts">0</h3>
+                        <p>Bài viết</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg>
+                            <use href="#icon-products" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalProducts">0</h3>
+                        <p>Sản phẩm</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg>
+                            <use href="#icon-images" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalImages">0</h3>
+                        <p>Hình ảnh</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg>
+                            <use href="#icon-check" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="publishedPosts">0</h3>
+                        <p>Đã xuất bản</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('posts')">
+                    <svg>
+                        <use href="#icon-posts" />
+                    </svg>
+                    Bài Viết
+                </button>
+                <button class="tab-btn" onclick="switchTab('products')">
+                    <svg>
+                        <use href="#icon-products" />
+                    </svg>
+                    Sản Phẩm
+                </button>
+                <button class="tab-btn" onclick="switchTab('gallery')">
+                    <svg>
+                        <use href="#icon-images" />
+                    </svg>
+                    Hình Ảnh
+                </button>
+            </div>
+
+            <!-- Posts Tab -->
+            <div class="tab-content active" id="tab-posts">
+                <div class="data-section">
+                    <div class="section-header">
+                        <h2>Quản Lý Bài Viết</h2>
+                        <button class="btn btn-primary btn-sm" onclick="openModal('post')">
+                            <svg style="width:16px;height:16px">
+                                <use href="#icon-add" />
+                            </svg>
+                            Thêm Bài Viết
+                        </button>
+                    </div>
+                    <div id="postsContainer"></div>
+                </div>
+            </div>
+
+            <!-- Products Tab -->
+            <div class="tab-content" id="tab-products">
+                <div class="data-section">
+                    <div class="section-header">
+                        <h2>Quản Lý Sản Phẩm</h2>
+                        <button class="btn btn-primary btn-sm" onclick="openModal('product')">
+                            <svg style="width:16px;height:16px">
+                                <use href="#icon-add" />
+                            </svg>
+                            Thêm Sản Phẩm
+                        </button>
+                    </div>
+                    <div class="items-grid" id="productsGrid"></div>
+                </div>
+            </div>
+
+            <!-- Gallery Tab -->
+            <div class="tab-content" id="tab-gallery">
+                <div class="data-section">
+                    <div class="section-header">
+                        <h2>Quản Lý Hình Ảnh</h2>
+                        <button class="btn btn-primary btn-sm" onclick="openModal('image')">
+                            <svg style="width:16px;height:16px">
+                                <use href="#icon-add" />
+                            </svg>
+                            Thêm Hình Ảnh
+                        </button>
+                    </div>
+                    <div class="items-grid" id="galleryGrid"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Universal Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Thêm Mới</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic form content -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+                <button class="btn btn-primary" id="modalSaveBtn" onclick="saveItem()">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =============== CONFIG ===============
+        const CONFIG = {
+            credentials: { username: 'admin', password: 'admin123' },
+            storage: {
+                posts: 'dedua_posts',
+                products: 'dedua_products',
+                gallery: 'dedua_gallery',
+                loggedIn: 'dedua_logged_in'
+            }
+        };
+
+        let currentType = null;
+        let currentEditId = null;
+        let currentImageData = null;
+
+        // =============== INIT ===============
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+        });
+
+        function checkAuth() {
+            if (sessionStorage.getItem(CONFIG.storage.loggedIn) === 'true') {
+                showDashboard();
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === CONFIG.credentials.username && password === CONFIG.credentials.password) {
+                sessionStorage.setItem(CONFIG.storage.loggedIn, 'true');
+                showDashboard();
+            } else {
+                const err = document.getElementById('errorMessage');
+                err.style.display = 'block';
+                setTimeout(() => err.style.display = 'none', 3000);
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('adminContainer').style.display = 'block';
+            loadAll();
+        }
+
+        function logout() {
+            if (confirm('Bạn có chắc muốn đăng xuất?')) {
+                sessionStorage.removeItem(CONFIG.storage.loggedIn);
+                location.reload();
+            }
+        }
+
+        // =============== TABS ===============
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        // =============== DATA FUNCTIONS ===============
+        function getItems(key) {
+            return JSON.parse(localStorage.getItem(key) || '[]');
+        }
+
+        function saveItems(key, items) {
+            localStorage.setItem(key, JSON.stringify(items));
+        }
+
+        function loadAll() {
+            loadPosts();
+            loadProducts();
+            loadGallery();
+            updateStats();
+        }
+
+        function updateStats() {
+            const posts = getItems(CONFIG.storage.posts);
+            const products = getItems(CONFIG.storage.products);
+            const gallery = getItems(CONFIG.storage.gallery);
+
+            document.getElementById('totalPosts').textContent = posts.length;
+            document.getElementById('totalProducts').textContent = products.length;
+            document.getElementById('totalImages').textContent = gallery.length;
+            document.getElementById('publishedPosts').textContent = posts.filter(p => p.published).length;
+        }
+
+        // =============== POSTS ===============
+        function loadPosts() {
+            const posts = getItems(CONFIG.storage.posts);
+            const container = document.getElementById('postsContainer');
+
+            if (posts.length === 0) {
+                container.innerHTML = `
+                    <div class="no-data">
+                        <svg><use href="#icon-empty"/></svg>
+                        <p>Chưa có bài viết nào</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Hình</th>
+                            <th>Tiêu đề</th>
+                            <th>Ngày tạo</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(post => `
+                            <tr>
+                                <td><img src="${post.image || 'logo/logo.jpg'}" class="table-img"></td>
+                                <td style="font-weight:600;color:var(--primary-green)">${post.title}</td>
+                                <td>${formatDate(post.createdAt)}</td>
+                                <td><span class="status-badge ${post.published ? 'status-published' : 'status-draft'}">${post.published ? 'Xuất bản' : 'Nháp'}</span></td>
+                                <td>
+                                    <div style="display:flex;gap:5px;">
+                                        <button class="btn-icon btn-edit" onclick="editItem('post', ${post.id})"><svg><use href="#icon-edit"/></svg></button>
+                                        <button class="btn-icon btn-delete" onclick="deleteItem('post', ${post.id})"><svg><use href="#icon-delete"/></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>`;
+        }
+
+        // =============== PRODUCTS ===============
+        function loadProducts() {
+            const products = getItems(CONFIG.storage.products);
+            const container = document.getElementById('productsGrid');
+
+            if (products.length === 0) {
+                container.innerHTML = `
+                    <div class="no-data" style="grid-column:1/-1">
+                        <svg><use href="#icon-empty"/></svg>
+                        <p>Chưa có sản phẩm nào</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = products.map(product => `
+                <div class="item-card">
+                    <div class="item-image">
+                        <img src="${product.image || 'logo/logo.jpg'}" alt="${product.name}">
+                        <div class="item-actions">
+                            <button class="btn-icon btn-edit" onclick="editItem('product', ${product.id})"><svg><use href="#icon-edit"/></svg></button>
+                            <button class="btn-icon btn-delete" onclick="deleteItem('product', ${product.id})"><svg><use href="#icon-delete"/></svg></button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h4>${product.name}</h4>
+                        <p>${product.price || 'Liên hệ'}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // =============== GALLERY ===============
+        function loadGallery() {
+            const images = getItems(CONFIG.storage.gallery);
+            const container = document.getElementById('galleryGrid');
+
+            if (images.length === 0) {
+                container.innerHTML = `
+                    <div class="no-data" style="grid-column:1/-1">
+                        <svg><use href="#icon-empty"/></svg>
+                        <p>Chưa có hình ảnh nào</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = images.map(img => `
+                <div class="item-card">
+                    <div class="item-image">
+                        <img src="${img.src}" alt="${img.title || 'Hình ảnh'}">
+                        <div class="item-actions">
+                            <button class="btn-icon btn-delete" onclick="deleteItem('image', ${img.id})"><svg><use href="#icon-delete"/></svg></button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h4>${img.title || 'Không có tiêu đề'}</h4>
+                        <p>${formatDate(img.createdAt)}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // =============== MODAL ===============
+        function openModal(type, id = null) {
+            currentType = type;
+            currentEditId = id;
+            currentImageData = null;
+
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+
+            let formHTML = '';
+
+            if (type === 'post') {
+                const post = id ? getItems(CONFIG.storage.posts).find(p => p.id === id) : null;
+                title.textContent = id ? 'Sửa Bài Viết' : 'Thêm Bài Viết';
+                formHTML = `
+                    <div class="form-group">
+                        <label>Tiêu đề *</label>
+                        <input type="text" id="formTitle" value="${post?.title || ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nội dung *</label>
+                        <textarea id="formContent">${post?.content || ''}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Hình ảnh</label>
+                        <div class="image-upload" onclick="document.getElementById('formImage').click()">
+                            <svg><use href="#icon-upload"/></svg>
+                            <p>Click để chọn hình</p>
+                            <input type="file" id="formImage" accept="image/*" onchange="previewImage(this)">
+                        </div>
+                        <div class="image-preview" id="imagePreview">${post?.image ? `<img src="${post.image}">` : ''}</div>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="formPublished" ${post?.published !== false ? 'checked' : ''}>
+                        <label for="formPublished">Xuất bản</label>
+                    </div>`;
+                if (post?.image) currentImageData = post.image;
+            } else if (type === 'product') {
+                const product = id ? getItems(CONFIG.storage.products).find(p => p.id === id) : null;
+                title.textContent = id ? 'Sửa Sản Phẩm' : 'Thêm Sản Phẩm';
+                formHTML = `
+                    <div class="form-group">
+                        <label>Tên sản phẩm *</label>
+                        <input type="text" id="formName" value="${product?.name || ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <textarea id="formDesc">${product?.description || ''}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Giá</label>
+                        <input type="text" id="formPrice" value="${product?.price || ''}" placeholder="VD: 50.000đ hoặc Liên hệ">
+                    </div>
+                    <div class="form-group">
+                        <label>Nhãn (Badge)</label>
+                        <input type="text" id="formBadge" value="${product?.badge || ''}" placeholder="VD: Bán chạy, Hot, Mới">
+                    </div>
+                    <div class="form-group">
+                        <label>Hình ảnh</label>
+                        <div class="image-upload" onclick="document.getElementById('formImage').click()">
+                            <svg><use href="#icon-upload"/></svg>
+                            <p>Click để chọn hình</p>
+                            <input type="file" id="formImage" accept="image/*" onchange="previewImage(this)">
+                        </div>
+                        <div class="image-preview" id="imagePreview">${product?.image ? `<img src="${product.image}">` : ''}</div>
+                    </div>`;
+                if (product?.image) currentImageData = product.image;
+            } else if (type === 'image') {
+                title.textContent = 'Thêm Hình Ảnh';
+                formHTML = `
+                    <div class="form-group">
+                        <label>Tiêu đề (tùy chọn)</label>
+                        <input type="text" id="formImageTitle" placeholder="Mô tả ngắn về hình ảnh">
+                    </div>
+                    <div class="form-group">
+                        <label>Hình ảnh *</label>
+                        <div class="image-upload" onclick="document.getElementById('formImage').click()">
+                            <svg><use href="#icon-upload"/></svg>
+                            <p>Click để chọn hình</p>
+                            <input type="file" id="formImage" accept="image/*" onchange="previewImage(this)" required>
+                        </div>
+                        <div class="image-preview" id="imagePreview"></div>
+                    </div>`;
+            }
+
+            body.innerHTML = formHTML;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            currentType = null;
+            currentEditId = null;
+            currentImageData = null;
+        }
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    currentImageData = e.target.result;
+                    document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function saveItem() {
+            if (currentType === 'post') {
+                const title = document.getElementById('formTitle').value.trim();
+                const content = document.getElementById('formContent').value.trim();
+                const published = document.getElementById('formPublished').checked;
+
+                if (!title || !content) return alert('Vui lòng nhập tiêu đề và nội dung!');
+
+                const posts = getItems(CONFIG.storage.posts);
+
+                if (currentEditId) {
+                    const idx = posts.findIndex(p => p.id === currentEditId);
+                    if (idx > -1) {
+                        posts[idx] = { ...posts[idx], title, content, published, image: currentImageData || posts[idx].image, updatedAt: new Date().toISOString() };
+                    }
+                } else {
+                    posts.push({ id: Date.now(), title, content, published, image: currentImageData || '', createdAt: new Date().toISOString() });
+                }
+
+                saveItems(CONFIG.storage.posts, posts);
+                loadPosts();
+            } else if (currentType === 'product') {
+                const name = document.getElementById('formName').value.trim();
+                const description = document.getElementById('formDesc').value.trim();
+                const price = document.getElementById('formPrice').value.trim();
+                const badge = document.getElementById('formBadge').value.trim();
+
+                if (!name) return alert('Vui lòng nhập tên sản phẩm!');
+
+                const products = getItems(CONFIG.storage.products);
+
+                if (currentEditId) {
+                    const idx = products.findIndex(p => p.id === currentEditId);
+                    if (idx > -1) {
+                        products[idx] = { ...products[idx], name, description, price, badge, image: currentImageData || products[idx].image };
+                    }
+                } else {
+                    products.push({ id: Date.now(), name, description, price, badge, image: currentImageData || '' });
+                }
+
+                saveItems(CONFIG.storage.products, products);
+                loadProducts();
+            } else if (currentType === 'image') {
+                if (!currentImageData) return alert('Vui lòng chọn hình ảnh!');
+
+                const title = document.getElementById('formImageTitle').value.trim();
+                const images = getItems(CONFIG.storage.gallery);
+                images.push({ id: Date.now(), title, src: currentImageData, createdAt: new Date().toISOString() });
+                saveItems(CONFIG.storage.gallery, images);
+                loadGallery();
+            }
+
+            closeModal();
+            updateStats();
+            alert('Đã lưu thành công!');
+        }
+
+        function editItem(type, id) {
+            openModal(type, id);
+        }
+
+        function deleteItem(type, id) {
+            if (!confirm('Bạn có chắc muốn xóa?')) return;
+
+            let key, loader;
+            if (type === 'post') { key = CONFIG.storage.posts; loader = loadPosts; }
+            else if (type === 'product') { key = CONFIG.storage.products; loader = loadProducts; }
+            else if (type === 'image') { key = CONFIG.storage.gallery; loader = loadGallery; }
+
+            const items = getItems(key).filter(item => item.id !== id);
+            saveItems(key, items);
+            loader();
+            updateStats();
+            alert('Đã xóa!');
+        }
+
+        // =============== UTILS ===============
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('vi-VN');
+        }
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', e => {
+            if (e.target.id === 'modal') closeModal();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+
+</html>

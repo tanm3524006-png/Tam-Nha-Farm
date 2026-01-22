@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Đệ Dừa - Nước Dừa Tươi Nguyên Chất. Cung cấp dừa tươi, nước dừa nguyên chất từ vườn Vĩnh Long.">
+    <meta name="keywords" content="dừa tươi, nước dừa, Vĩnh Long, dừa nguyên chất, Đệ Dừa">
+    <title>Đệ Dừa - Nước Dừa Tươi Nguyên Chất</title>
+
+    <link rel="icon" type="image/png" href="logo/logo.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- SVG Icons -->
+    <svg style="display: none;">
+        <symbol id="icon-leaf" viewBox="0 0 24 24">
+            <path
+                d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z" />
+        </symbol>
+        <symbol id="icon-droplet" viewBox="0 0 24 24">
+            <path
+                d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z" />
+        </symbol>
+        <symbol id="icon-truck" viewBox="0 0 24 24">
+            <path
+                d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+        </symbol>
+        <symbol id="icon-tag" viewBox="0 0 24 24">
+            <path
+                d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+            <path
+                d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+        </symbol>
+        <symbol id="icon-chat" viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+        </symbol>
+        <symbol id="icon-location" viewBox="0 0 24 24">
+            <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+        </symbol>
+        <symbol id="icon-clock" viewBox="0 0 24 24">
+            <path
+                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+            <path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </symbol>
+        <symbol id="icon-coconut" viewBox="0 0 24 24">
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </symbol>
+        <symbol id="icon-arrow" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+        </symbol>
+        <symbol id="icon-facebook" viewBox="0 0 24 24">
+            <path
+                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
+        </symbol>
+        <symbol id="icon-youtube" viewBox="0 0 24 24">
+            <path
+                d="M10 15l5.19-3L10 9v6zm11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z" />
+        </symbol>
+    </svg>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <img src="logo/logo.jpg" alt="Đệ Dừa Logo">
+            <div class="logo-text">
+                <h1>Đệ Dừa</h1>
+                <span>Nước Dừa Tươi Nguyên Chất</span>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Trang Chủ</a></li>
+            <li><a href="#about">Giới Thiệu</a></li>
+            <li><a href="#products">Sản Phẩm</a></li>
+            <li><a href="#blog">Tin Tức</a></li>
+            <li><a href="#contact">Liên Hệ</a></li>
+        </ul>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">100% Tự Nhiên</div>
+            <h2>Nước Dừa Tươi<br><span>Nguyên Chất</span> Từ Vĩnh Long</h2>
+            <p>Thưởng thức hương vị ngọt mát, thanh khiết của trái dừa tươi được hái trực tiếp từ vườn. Chất lượng đảm
+                bảo, giao hàng tận nơi.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">
+                    Xem Sản Phẩm
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    Liên Hệ Ngay
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="logo/logo.jpg" alt="Đệ Dừa - Dừa Tươi Nguyên Chất">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header fade-in">
+            <h2>Tại Sao Chọn Đệ Dừa?</h2>
+            <p>Chúng tôi cam kết mang đến những trái dừa tươi ngon nhất, chất lượng cao nhất từ vườn đến tay bạn.</p>
+        </div>
+
+        <div class="about-grid stagger-animation">
+            <div class="about-card fade-in">
+                <div class="about-icon">
+                    <svg width="36" height="36" fill="currentColor">
+                        <use href="#icon-leaf" />
+                    </svg>
+                </div>
+                <h3>Từ Vườn Vĩnh Long</h3>
+                <p>Dừa được trồng và chăm sóc tại vườn dừa Vĩnh Long, vùng đất nổi tiếng với những trái dừa thơm ngon
+                    nhất
+                    Việt Nam.</p>
+            </div>
+
+            <div class="about-card fade-in">
+                <div class="about-icon">
+                    <svg width="36" height="36" fill="currentColor">
+                        <use href="#icon-droplet" />
+                    </svg>
+                </div>
+                <h3>Tươi Mát Nguyên Chất</h3>
+                <p>Nước dừa tươi 100% nguyên chất, không chất bảo quản, không phụ gia. Giữ nguyên hương vị tự nhiên.</p>
+            </div>
+
+            <div class="about-card fade-in">
+                <div class="about-icon">
+                    <svg width="36" height="36" fill="currentColor">
+                        <use href="#icon-truck" />
+                    </svg>
+                </div>
+                <h3>Giao Hàng Tận Nơi</h3>
+                <p>Đội ngũ giao hàng chuyên nghiệp, đảm bảo dừa tươi đến tay bạn trong thời gian nhanh nhất.</p>
+            </div>
+
+            <div class="about-card fade-in">
+                <div class="about-icon">
+                    <svg width="36" height="36" fill="currentColor">
+                        <use href="#icon-tag" />
+                    </svg>
+                </div>
+                <h3>Giá Cả Hợp Lý</h3>
+                <p>Giá bán sỉ và lẻ cạnh tranh, phù hợp với mọi đối tượng khách hàng từ hộ gia đình đến doanh nghiệp.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-header fade-in">
+            <h2>Sản Phẩm Của Chúng Tôi</h2>
+            <p>Khám phá các loại dừa tươi chất lượng cao, được tuyển chọn kỹ lưỡng từ vườn.</p>
+        </div>
+
+        <div class="products-grid stagger-animation" id="productsGrid">
+            <!-- Products loaded from admin or default -->
+        </div>
+    </section>
+
+    <!-- Image Gallery -->
+    <section class="video-gallery">
+        <div class="section-header fade-in">
+            <h2>Hình Ảnh Thực Tế</h2>
+            <p>Khám phá vườn dừa và quy trình sản xuất của chúng tôi.</p>
+        </div>
+
+        <div class="video-grid stagger-animation" id="galleryGrid">
+            <!-- Gallery loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="section-header fade-in">
+            <h2>Tin Tức & Bài Viết</h2>
+            <p>Cập nhật các tin tức mới nhất về sản phẩm và hoạt động của Đệ Dừa.</p>
+        </div>
+
+        <div class="blog-grid stagger-animation" id="blogGrid">
+            <!-- Blog posts loaded from localStorage -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info fade-in">
+                <h2>Liên Hệ Với Chúng Tôi</h2>
+                <p>Bạn có câu hỏi hoặc muốn đặt hàng? Hãy liên hệ với chúng tôi qua các kênh bên dưới.</p>
+
+                <div class="contact-details">
+                    <a href="tel:0913771336" class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg width="22" height="22" fill="currentColor">
+                                <use href="#icon-phone" />
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <span>Hotline</span>
+                            0913771336
+                        </div>
+                    </a>
+
+                    <a href="https://zalo.me/0913771336" target="_blank" class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg width="22" height="22" fill="currentColor">
+                                <use href="#icon-chat" />
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <span>Zalo</span>
+                            0913771336
+                        </div>
+                    </a>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg width="22" height="22" fill="currentColor">
+                                <use href="#icon-location" />
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <span>Địa chỉ</span>
+                            489B/5A Hậu Giang, phuong Bình Phú, Thanh Phô Hồ Chí Minh
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg width="22" height="22" fill="currentColor">
+                                <use href="#icon-clock" />
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <span>Giờ làm việc</span>
+                            7:00 - 21:00 (Thứ 2 - CN)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form fade-in" id="contactForm">
+                <h3>Gửi Tin Nhắn</h3>
+                <div class="form-group">
+                    <label for="name">Họ và tên *</label>
+                    <input type="text" id="name" name="name" required placeholder="Nhập họ tên của bạn">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại">
+                </div>
+                <div class="form-group">
+                    <label for="message">Nội dung</label>
+                    <textarea id="message" name="message" placeholder="Nhập nội dung tin nhắn..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">
+                    Gửi Tin Nhắn
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="logo/logo.jpg" alt="Đệ Dừa">
+                    <div>
+                        <h4 style="color: var(--white); margin-bottom: 0;">Đệ Dừa</h4>
+                        <span style="opacity: 0.8;">Nước Dừa Tươi Nguyên Chất</span>
+                    </div>
+                </div>
+                <p>Chuyên cung cấp dừa tươi, nước dừa nguyên chất chất lượng cao từ vườn Vĩnh Long.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg width="20" height="20" fill="currentColor">
+                            <use href="#icon-facebook" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Zalo">
+                        <svg width="20" height="20" fill="currentColor">
+                            <use href="#icon-chat" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <svg width="20" height="20" fill="currentColor">
+                            <use href="#icon-youtube" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Liên Kết</h4>
+                <a href="#home">Trang Chủ</a>
+                <a href="#about">Giới Thiệu</a>
+                <a href="#products">Sản Phẩm</a>
+                <a href="#blog">Tin Tức</a>
+                <a href="#contact">Liên Hệ</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Liên Hệ</h4>
+                <p>Hotline: 0913771336</p>
+                <p>Zalo: 0913771336</p>
+                <p>489B/5A Hậu Giang, phuong Bình Phú, Thanh Phô Hồ Chí Minh</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Đệ Dừa. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:0913771336" class="float-btn phone" data-tooltip="Gọi ngay" id="phoneBtn">
+            <svg width="26" height="26" fill="currentColor">
+                <use href="#icon-phone" />
+            </svg>
+        </a>
+        <a href="https://zalo.me/0913771336" target="_blank" class="float-btn zalo" data-tooltip="Chat Zalo"
+            id="zaloBtn">
+            <svg width="26" height="26" fill="currentColor">
+                <use href="#icon-chat" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" onclick="closeLightbox()">×</div>
+        <img src="" alt="Lightbox Image" id="lightboxImg">
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
